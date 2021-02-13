@@ -1,0 +1,22 @@
+$> python printIntro.py
+print function basics:
+Each statement prints on a new line
+unless I tell it not to with the end= parameter
+- Because by default end is set to a newline
+
+an empty print still uses the default end parameter
+
+I can end with spaces   or dashes---or anything I need to!!!!!
+
+I can print two things together with a comma
+- and if they are strings I can omit the comma
+- or I can use the + operator
+-- but not with variables! we'll see that later
+
+If I want something specific between inputs, I can do that:
+using the--sep--parameter
+But I have to use commas to do so
+
+As long as I use quotes for strings, I can use an apostrophe '
+but if I use single quotes, I cannot, but I can use "quotes"
+- we'll see how to get around this later
