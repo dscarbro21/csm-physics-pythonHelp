@@ -1,3 +1,0 @@
-$> python helloWorldMain.py
-Hello World!
-I am in __main__

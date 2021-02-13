@@ -1,2 +1,0 @@
-$> python helloWorld.py
-Hello World!
