@@ -1,188 +1,10 @@
-\documentclass{book}
-\usepackage{listings}
-\usepackage[cache=false]{minted}
-\usepackage{graphicx}
-\usepackage[parfill]{parskip} %new paragraph without an indent
-\usepackage{amsmath} %needed for eqref
-\usepackage[margin =1.in]{geometry} %changes margins bc default of 11pt font is 1.75 margins
-\usepackage[utf8]{inputenc}%this was automatically here?
-\usepackage{siunitx}
-\usepackage{float}
-\usepackage[loose,nice]{units}
-\usepackage{amssymb}
-\usepackage{caption}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage[mathscr]{euscript}
-\usepackage{xcolor}
-\usepackage{mdframed}
-\usepackage{imakeidx}
-\usepackage{caption}
+\documentclass[oneside]{book}
 
-\usepackage{varwidth}
-\DeclareCaptionFormat{capFormat}{%
-  % #1: label (e.g. "Table 1")
-  % #2: separator (e.g. ": ")
-  % #3: caption text
-  \begin{varwidth}{0.9\linewidth}%
-    \centering
-    #1#2#3%
-  \end{varwidth}%
-}
-% \captionsetup{justification=centering}
-\captionsetup{format=capFormat}
-% \captionsetup{labelsep=newline}
-% \usemintedstyle{rainbow_dash}
-
-% \setcounter{secnumdepth}{3}
-
-\definecolor{codebg}{rgb}{0.85,0.85,0.85}
-
-\makeatletter
-\lst@Key{matchrangestart}{f}{\lstKV@SetIf{#1}\lst@ifmatchrangestart}
-\def\lst@SkipToFirst{%
-    \lst@ifmatchrangestart\c@lstnumber=\numexpr-1+\lst@firstline\fi
-    \ifnum \lst@lineno<\lst@firstline
-        \def\lst@next{\lst@BeginDropInput\lst@Pmode
-        \lst@Let{13}\lst@MSkipToFirst
-        \lst@Let{10}\lst@MSkipToFirst}%
-        \expandafter\lst@next
-    \else
-        \expandafter\lst@BOLGobble
-    \fi}
-\makeatother
-
-\newcommand{\captab}{\-\hspace{4em}}
-
-\newcommand{\python}[3]{
-    \usemintedstyle{autumn}
-    % \usemintedstyle{rainbow_dash}
-    % \usemintedstyle{manni}
-    \begin{listing}[ht]
-        \begin{mdframed}[backgroundcolor=codebg]
-            \inputminted[linenos]{python}{#1}
-        \end{mdframed}
-        \caption{#2}
-        \label{#3}
-    \end{listing}
-}
-
-\newcommand{\pythonScratch}[3]{
-    \usemintedstyle{autumn}
-    % \usemintedstyle{rainbow_dash}
-    % \usemintedstyle{manni}
-    \begin{listing}[ht]
-            \begin{minted}[linenos]{python}
-            #1%
-        	\end{minted}
-        \end{mdframed}
-        \caption{#2}
-        \label{#3}
-    \end{listing}
-}
-
-\newcommand{\pythonNLN}[3]{
-    \usemintedstyle{autumn}
-    % \usemintedstyle{rainbow_dash}
-    % \usemintedstyle{manni}
-    \begin{listing}[htb]
-        \begin{mdframed}[backgroundcolor=codebg]
-            \inputminted{python}{#1}
-        \end{mdframed}
-        \caption{#2}
-        \label{#3}
-    \end{listing}
-}
-
-\newcommand{\pythonSub}[5]{
-    \usemintedstyle{autumn}
-    % \usemintedstyle{rainbow_dash}
-    % \usemintedstyle{manni}
-    \begin{listing}[htb]
-        \begin{mdframed}[backgroundcolor=codebg]
-            \inputminted[firstline=#2, lastline=#3, linenos]{python}{#1}
-        \end{mdframed}
-        \caption{#4}
-        \label{#5}
-    \end{listing}
-}
-
-\definecolor{powerBlue}{RGB}{0,30,227}
-\definecolor{terminalGreen}{RGB}{17,120,17}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\newcommand{\terminalType}{\renewcommand{\ttdefault}{cmss}\color{powerBlue}\bf\slshape}
-\newcommand{\terminalInput}{\color{terminalGreen}}
-\lstdefinelanguage{exampleTerminal}{
-    % morecomment=[il]{>>},
-    % morecomment=[s]{>>}{<<}
-}
-\lstset{
-    language={exampleTerminal},
-    % captionpos=b,
-    extendedchars=true,
-    % tabsize=4
-    basicstyle=\ttfamily,
-    moredelim=[il][\terminalType]{>>},
-    moredelim=[is][\terminalType]{<>}{<>},
-    moredelim=[l][\terminalInput]{\$>},
-    columns=fixed,
-    numbers=left,
-    numberstyle=\tiny,
-    numbersep=12pt,
-    matchrangestart=t,
-    showlines=true,
-    % keepspaces=true,
-    % commentstyle=\color{powerBlue}\slshape,
-    % keywordstyle=\bffamily,
-}
-\newcommand{\shell}[3]{
-    \begin{listing}[htb]
-        \begin{mdframed}[backgroundcolor=codebg]
-            \lstinputlisting{#1}  
-        \end{mdframed}
-        \caption{#2}
-        \label{#3}
-    \end{listing}
-}
-
-\newcommand{\shellSub}[5]{
-    \begin{listing}[htb]
-        \begin{mdframed}[backgroundcolor=codebg]
-            \lstinputlisting[firstline=#2, lastline=#3]{#1}  
-        \end{mdframed}
-        \caption{#4}
-        \label{#5}
-    \end{listing}
-}
+\usepackage{../../pyhelp} 
  
-\newcommand{\shellSubH}[5]{
-    \begin{listing}[H]
-        \begin{mdframed}[backgroundcolor=codebg]
-            \lstinputlisting[firstline=#2, lastline=#3]{#1}  
-        \end{mdframed}
-        \caption{#4}
-        \label{#5}
-    \end{listing}
-}
-
-\newcommand{\pythonAndShellSub}[8]{
-\usemintedstyle{autumn}
-    \begin{listing}[htb]
- 	   \begin{mdframed}[backgroundcolor=codebg]
-            \inputminted[firstline=#2, lastline=#3, linenos]{python}{#1}
-        \end{mdframed}
-        \hspace{5em}$\Downarrow$\hfill$\Downarrow$\hspace{5em}
-        \begin{mdframed}[backgroundcolor=codebg]
-            \lstinputlisting[firstline=#5, lastline=#6]{#4}  
-        \end{mdframed}
-        \caption{#7}
-        \label{#8}
-    \end{listing}
-}
-
-    \newcommand{\uhat}[1]{\expandafter\hat#1} 
+ 
     
-    \title{Basics - Introduction}
+    \title{Python Guide\\Chapters 1-2, Basics of Python}
     
     \author{Daniel Scarbrough}
     \date{\today}
@@ -196,17 +18,15 @@
 
 \chapter{Introduction}
 
-% Many people whether they are experienced in coding in languages such as C++, as well as those who have never written code before will be familiar with the phrase "compiling code". This means that when the programmer finishes their code, they tell the compiler to translate what they've written in a \textit{high-level} language down to machine instructions. These instructions are then kept in an executable which is then run when desired. The compiler takes a thorough look at everything provided to it and, should a \textit{compile-time} error exist, it will halt and alert the programmer, without building an executable. 
+In Chapters 1 and 2, you will be introduced to the very basics of Python through a few examples. Each file in these examples is included in this repository and can be viewed, downloaded, copied, edited, etc. When first learning it can be helpful even to copy examples from scratch - meaning not using copy-paste - but typing it out line for line. Python is a language, and much like learning a spoken language this type of practice is helpful to start becoming fluent.
 
-% These languages are \textit{statically typed}
+The examples here will follow the Text Editor + Terminal workflow in the Getting Started guide (Chapter 0). In most cases, Python code will be displayed in one block and the following block will show the terminal output of that code. Python code will be color-coded and terminal output will be all black text except for the terminal command to run the file: {\color{OliveGreen}\texttt{\$> python file.py}}. Some Python files and their outputs will be split between multiple listings, but the file name will always be mentioned explicitly.
 
-Many people who are either experienced in a language such as
-
-Python however operates through a \textit{parser}, meaning that
+If you are familiar with some other languages, you may notice that Python is not compiled. Instead Python is \textit{parsed}, meaning it is read and executed consecutively as the file is read. If what that means is unclear: don't fret. It will make sense as we dive deeper in further chapters. We will begin with the apparently mandatory beginner exercise: "Hello World".
 
 \section{Hello World}
-
-As it is the unwritten law that all programming instruction begin with "Hello World!", we will implement it in Python. This does have utility in demonstrating the simplicity of Python and the nature of it being a parsed language. Create a file named \texttt{helloWorld.py}, and all that we have to do is tell Python to print our greeting to the world with the one-liner in Listing \ref{code:helloWorld}.
+\label{sec:helloWorld}
+As it is the unwritten law that all programming instruction begin with "Hello World!", we will implement it in Python to get started. This does have utility in demonstrating the simplicity of Python and the nature of it being a parsed language. Create a file named \texttt{helloWorld.py}, and all that we have to do is tell Python to print our greeting to the world with the one-liner in Listing \ref{code:helloWorld}.
 
 \python{../../../docCode/chapter1/helloWorld.py}
        {Classic "Hello World!" code}
@@ -218,71 +38,18 @@ Running the \texttt{helloWorld.py} program from a terminal will ask the Python p
       {Running helloWorld.py from a shell}
       {shell:helloWorld}
 
-\subsection{Defining Main}
+\FloatBarrier
 
-While one can write large Python scripts entirely in the top level, it is usually not a good idea to do so for reasons that may not seem clear now, but will as your projects grow and become more complex. This is where the concept of "style" begins to come into play, as many who are new to Python and programming in general will argue that the code does what it's supposed to regardless of organization and style. While this is true, it is important to consider the experience that you as the developer will have as things grow in complexity. 
-
-Keeping code modular and building portions one chunk at a time while being able to test individual pieces becomes an essential feature to you as the author of the code. Keeping with these style recommendations is an investment in your future productivity, and more importantly, your sanity.
-
-With this in mind, let's modify our "Hello World!" code to include a \texttt{main} function. While this seems like a lot of added complexity just to print "Hello World!", this structure is the foundation for our modular coding style whose purpose will become clearer in later sections. We will define a \texttt{main} function where the instructions for Python will start. Anything that is contained within \texttt{main} \textbf{\emph{must}} be indented \emph{once} past \texttt{def}. Python uses tabs to understand when blocks such as functions end, and the parser will complain immediately if it sees an erroneous tab.
-
-We will discuss functions more in a later section, but for now it is ok to copy the structure from the exampe code. Looking at Listing \ref{code:helloWorldMainNoName}, after \texttt{main} is defined it is then \textit{called}. For example if line 4 is omitted (try it), then when the script is run - nothing happens! You've told Python what \texttt{main} is but you haven't asked it to use it. This is because the code in \texttt{main} are not \textit{top-level}. So thinking of functions as one would in mathematics, we can define an equation for a line $f(x)=mx+b$; but without asking for f at some point- i.e. $f(4)$ nothing will "happen". 
-
-Another key is that the open and close parentheses \textit{must} be included even if there are no arguments to be passed through (in the math example $f()=4$). Meaning the same instructions will be executed every time this function is called. Without the parentheses Python reads \texttt{main} as a reference to the function itself - but not an instruction to execute the function. Running the code in Listing \ref{code:helloWorldMainNoName} will give the same output as in Listing \ref{code:helloWorld}, but now the structure is being improved for the developer as well as the user.
-
-\python{../../../docCode/chapter1/helloWorldMainNoName.py}
-       {A modification to "Hello World" to define a main path of execution}
-       {code:helloWorldMainNoName}
-
-%\subsubsection*{Checking the Entry Point}
-%
-%There is one more modification which may seem unnecessary at the moment, but it is worth making a habit of now before the complexity of these Python scripts increases. A major feature in Python is writing multiple \textit{modules}\index{module} which you can think of as different toolsets that you bring together to solve a problem. 
-%
-%When writing new modules you will want to test them to make sure they do what you expect. You may also use functions in one project which you later realize will be useful in another. When you import the functions from the original project, you won't want to run all the code specific to that project, but you also shouldn't have to make changes that make that project inoperable either. If you were working on a home improvement project for example: you wouldn't want the drill to start spinning wildly once you opened the toolbox, but your solution shouldn't be to throw away the battery.
-%
-%This is where the keyword \texttt{\_\_name\_\_}\index{\_\_name\_\_} comes into play. \emph{This is not a variable you can set}. This is set by the Python interpreter and in simple terms, it's Python setting the hierarchy between modules. The file that you give Python in the terminal when you say \texttt{\color{terminalGreen}\$> python fileName.py} is read as a module with the \texttt{\_\_name\_\_} set to \texttt{\_\_main\_\_}. This is the \emph{entry point} for your program, and it can be thought of as the trunk of a tree for which other modules are its branches. Checking for this is done as in Listing \ref{code:helloWorldMain}. For now it should be used as a starting template; the details around using \texttt{if} statements will come later.
-%
-%\python{../../../docCode/chapter1/helloWorldMain.py}
-%{A modification to "Hello World" to ensure \texttt{main()} is only run if the file \texttt{helloWorldMain.py} is the entry point for execution. A \texttt{print} statement is added so that we can see what \texttt{\_\_main\_\_} is.}
-%{code:helloWorldMain}
-%
-%\textbf{NOTE}: There are two equals signs in the \texttt{if} statement. This is very important and will be discussed later.
-%
-%       \shell{../../../docCode/chapter1/helloWorldMain.txt}
-%       {Running helloWorldMain.py now also prints the value of \texttt{\_\_name\_\_}}
-%       {shell:helloWorldMain}
-%       
-%The output from running \texttt{helloWorldMain.py} is shown in Listing \ref{shell:helloWorldMain}, which confirms the value of \texttt{\_\_name\_\_}. The importance of this method will be made clear in a later section when we make use of modules within our main file. For now the structure in Listing \ref{code:helloWorldMain} can be used as a template to start new Python files.
-%
-%\newpage
-%\subsubsection*{Key Points - Defining Main}
-%
-%\begin{itemize}
-%    \item \index{print}\texttt{print} can print strings to the terminal
-%    \begin{itemize}
-%        \item \texttt{print("enter text to print here")}
-%    \end{itemize}
-%    \item Each Python file can be used as a module
-%    \begin{itemize}
-%        \item Many modules can be used together in another
-%    \end{itemize}
-%    \item Keeping running/testing code in a function like \texttt{main} keeps modules "modular"
-%    \item Checking if a module is named \texttt{\_\_main\_\_} to run certain functions is good practice for future projects
-%
-%\end{itemize}
-
-
-% \shell{../docCode/basics/exampleTerminal.txt}{Example shell, blue inputs}{shell:label1}
-% \pythonNLN{../docCode/basics/helloWorldMain.py}{Example code 2, no line numbers}{code:label2}
 \chapter{Variables, Operations, and Basic Output}
 
 \section{Variables, Operations, and Types}\label{sec:vars-types-ops}
 
 \subsection{Variables}
 
-Variables in Python are \textit{assigned} using the \texttt{=} operator. The order of input is very important. The variable name, which can be any combination of letters, numbers, hyphens, and underscores - so long as the name begins with a letter. The case of the letters can be as you wish however be aware that Python variables are case sensitive, i.e. \texttt{m} and \texttt{M} are different variable names. When \textit{declaring} a variable (writing and assigning it a value for the first time), you do not need to specify what type of data it will hold. If you are familiar with a language like C, this will be quite different. Variables are dynamic, so you can change them in just about any way you want. In listing \ref{code:varIntro}, we assign integers 6 and 3 to the variables \texttt{x} and \texttt{y}.
+Variables in Python are \textit{assigned} using the \index{operator!assignment =}\texttt{=} operator. The order of input is very important. The variable name, which can be any combination of letters, numbers, hyphens, and underscores - so long as the name begins with a letter. The case of the letters can be as you wish however be aware that Python variables are case sensitive, i.e. \texttt{m} and \texttt{M} are different variable names. When \textit{declaring} a variable (writing and assigning it a value for the first time), you do not need to specify what type of data it will hold. If you are familiar with a language like C, this will be quite different. Variables in Python are dynamic, so you can change them in just about any way you want. In listing \ref{code:varIntro}, we assign integers 6 and 3 to the variables \texttt{x} and \texttt{y}.
 
 %
+
 \usemintedstyle{autumn}
 \begin{listing}[htb]
 \begin{mdframed}[backgroundcolor=codebg]
@@ -296,7 +63,7 @@ y = 3
 \end{listing}
 
 \subsubsection*{Style Notes: Variable Names}
-When naming variables there are a few things to consider. Most important is to use names that are concise but still descriptive enough for you to easily understand your code and remember variables. This extends to code that may be shared; if someone else is working with your code and has to figure out what \texttt{var1} and \texttt{abcd} are for it will be very difficult. This doesn't mean that somewhat long names are always bad, but it is up to you to decide what works best for each case. For variables that have more than one word as part of the name there are a few styles that are common. The style that I will use throughout these documents and examples is \textbf{\texttt{camelCase}}. Camel case begins with a lower case letter and each new word has its first letter capitalized. Some examples are in Listing \ref{code:camelCase}.
+When naming variables there are a few things to consider. Most important is to use names that are concise but still descriptive enough for you to easily understand your code and remember variables. This extends to code that may be shared; if someone else is working with your code and has to figure out what \texttt{var1} and \texttt{abcd} are for it will be very difficult. This doesn't mean that somewhat long names are always bad, but it is up to you to decide what works best for each case. For variables that have more than one word as part of the name there are a few styles that are common. The style that I will use throughout these documents and examples is \index{camelCase}\textbf{\texttt{camelCase}}. Camel case begins with a lower case letter and each new word has its first letter capitalized. Some examples are in Listing \ref{code:camelCase}.
 
 \usemintedstyle{autumn}
 \begin{listing}[htb]
@@ -311,10 +78,13 @@ maxFreqX = 10
 \label{code:camelCase}
 \end{listing}
 
-Another common style is \textbf{\texttt{snake\_case}}. This style uses an underscore between words. Which style you use is up to you (or your group or employer sometimes), but definitely don't just string words together in variable names without using a style that breaks apart words visually. Other style guidelines will be presented throughout these documents and examples. Example: constant variables that shouldn't be changed are often named in all capital letters. Maintaining a clean and readable style is essential in group work as well as solo coding so that you can read and modify your code again when you haven't looked at it in a while.
+Another common style is \index{snake\_case}\textbf{\texttt{snake\_case}}. This style uses an underscore between words. Which style you use is up to you (or your group or employer sometimes), but definitely don't just string words together in variable names without using a style that breaks apart words visually. Other style guidelines will be presented throughout these documents and examples. Example: constant variables that shouldn't be changed are often named in all capital letters. Maintaining a clean and readable style is essential in group work as well as solo coding so that you can read and modify your code again when you haven't looked at it in a while.
+
+\FloatBarrier
 
 \subsection{Basic Operations}
-Now that you are familiar with the basis of starting a Python script and displaying output, it is time to cover the basic mathematical operations you can use in Python to do thing more interesting than printing out a nice message. These are all pretty self explanatory, but keep in mind that the syntax for exponents differs from some other programming languages:
+\label{sec:ops}
+Now that you are familiar with the basis of starting a Python script and displaying output, it is time to cover the basic mathematical operations you can use in Python to do thing more interesting than printing out a nice message. These are all pretty self explanatory, but keep in mind that the syntax for exponents differs from some other programming languages:\index{operator}
 \begin{itemize}
 \item{\makebox[4cm][l]{Addition:} \texttt{+}}
 \item{\makebox[4cm][l]{Subtraction:} \texttt{-}}
@@ -325,45 +95,43 @@ Now that you are familiar with the basis of starting a Python script and display
 \item{\makebox[4cm][l]{Floor Division:} \texttt{//}}
 \end{itemize}
 
+Example usage of these operators is shown in Listings \ref{pyshell:opsIntroAddSub}-\ref{pyshell:opsIntroOther}. Everything is straightforward in these examples, but it is important to take note of when assignment (saving the result of an operation) occurs. When performing operations with variables, no changes to any variables occurs \textit{unless} a variable is explicitly changed with the \textit{assignment} operator \texttt{=}. This is seen in these example listings when assigning the results to \texttt{z}.
 
 \pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
 {1}{11}
 {../../../docCode/chapter2/section1/opsIntro.txt}
 {1}{6}
-{Lines 1-5 of \texttt{opsIntro.py} demonstrating variable assignment and using the \texttt{+} and \texttt{-} operators. It is important to note that the result of \texttt{x + y} within \texttt{print} is not stored. The result is printed and is not saved afterwards. \texttt{x} and \texttt{y} will still be \texttt{6} and \texttt{4} respectively. The output of this section is shown in the second frame.}{pyshell:opsIntroAssign}
+{Lines 1-5 of \texttt{opsIntro.py} demonstrating variable assignment and using the \texttt{+} and \texttt{-} operators. It is important to note that the result of \texttt{x + y} within \texttt{print} is not stored. The result is printed and is not saved afterwards. \texttt{x} and \texttt{y} will still be \texttt{6} and \texttt{4} respectively. The output of this section is shown in the second frame.}{pyshell:opsIntroAddSub}\index{operator!addition +}\index{operator!subtraction -}
 
 \pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
 {12}{19}
 {../../../docCode/chapter2/section1/opsIntro.txt}
 {7}{10}
-{}
-{pyshell:opsIntroSubtract}
+{Lines 12-19 of \texttt{opsIntro.py} demonstrating use of the \texttt{*} and \texttt{/} operators. Note that in the output in the second frame, that after division the result is displayed with a decimal point. Since division may not always yield a whole integer, the \textit{type} is changed to \textit{float}. Types are discussed further in Section \ref{sec:dataTypes}.}
+{pyshell:opsIntroMultDiv}\index{operator!multiplication *}\index{operator!division /}\index{type!float}
 
 \pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
 {20}{25}
 {../../../docCode/chapter2/section1/opsIntro.txt}
 {11}{15}
-{}
-{pyshell:opsIntroSubtract}
+{Lines 20-25 of \texttt{opsIntro.py} and its output. This section demonstrates that any further operations on \texttt{z} after division changed its type retains that type, even if the result is an integer.}
+{pyshell:opsIntroRetainFloat}
 
 \pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
 {26}{29}
 {../../../docCode/chapter2/section1/opsIntro.txt}
 {16}{19}
-{}
-{pyshell:opsIntroSubtract}
+{Lines 26-29 of \texttt{opsIntro.py} and its output. This section provides an example of each of the common operators beyond simple arithmetic. Note that both the \texttt{\%} and \texttt{//} operators yield integer output.}
+{pyshell:opsIntroOther}\index{operator!exponent **}\index{operator!modulus \%}\index{operator!floor division //}\index{operator!parentheses ()}
 
-
+\FloatBarrier
 
 \subsubsection*{Key Point - Operators}
 \begin{itemize}
 \item Variables don't change unless explicitly changed with the \texttt{=} assignment operator.
-	\begin{itemize}
-	\item This is first shown in lines 9-11 of Listing \ref{code:opsIntro}, as well as in many of the other print statements.
-	\end{itemize}
-\item No operations are implied. A variable next to parentheses will cause an error unless the \texttt{*} operator is used (line 50 of Listing \ref{code:opsIntro}.
-\item Operations can change data types of variables (line 36 of Listing \ref{code:opsIntro} when \texttt{x / y} is not an integer. More on data types in Section \ref{sec:dataTypes}.
-\item Order of operations is as follows (first to last). Operators of the same group work from left to right in the code, except for \texttt{**} which reads from right to left.
+\item No operations are implied. A variable next to parentheses will cause an error unless the \texttt{*} operator is used (line 29 of Listing \ref{pyshell:opsIntroOther}).
+\item Operations can change data types of variables (line 17 of Listing \ref{pyshell:opsIntroMultDiv} when using \texttt{/}). More on data types can be found in Section \ref{sec:dataTypes}.
+\item Order of operations is as follows (first to last). Operators of the same group work from left to right in the code, except for \texttt{**} which reads from right to left.\index{operator!order of operations}
 	\begin{itemize}
 	\item[] \texttt{**}
 	\item[] \texttt{*}, \texttt{/}, \texttt{//}, \texttt{\%}
@@ -373,17 +141,17 @@ Now that you are familiar with the basis of starting a Python script and display
 Note that this operator list does not cover every Python operator. Further operators will be introduced in their applicable topics.
 
 \subsection{Data Types}\label{sec:dataTypes}
-Every variable in Python has a \textit{type}. The type of a variable is key in terms of what can be done with it, and how it behaves differently from other types under the same circumstances. For example if I have a variable \texttt{x = "s"} and I say \texttt{x + 1}, it doesn't work. \texttt{"s"} isn't a number and we don't have a defined way to add a number to it. Type conversion is possible when needed (and when it makes sense to do so). First, here are the basic data types to get started with (name, keyword, examples):
+Every variable in Python has a \index{type}\textit{type}. The type of a variable is key in terms of what can be done with it, and how it behaves differently from other types under the same circumstances. For example if I have a variable \texttt{x = "s"} and I say \texttt{x + 1}, it doesn't work. \texttt{"s"} isn't a number and we don't have a defined way to add a number to it. Type conversion is possible when needed (and when it makes sense to do so). First, here are the basic data types to get started with (name, keyword, examples):
 
 \begin{itemize}
-\item{\makebox[2cm][l]{Integer:} \makebox[2cm][l]{\texttt{int}} Ex: 1, 10, 121321, -982}
-\item{\makebox[2cm][l]{Float:} \makebox[2cm][l]{\texttt{float}} Ex: 1.0, 10000.03, 12.687, -1.982}
-\item{\makebox[2cm][l]{Complex:} \makebox[2cm][l]{\texttt{complex}} Ex: 1 + 10j, 10.0 - 0.2j, 0.004j, -982 + 1.923j}
-\item{\makebox[2cm][l]{String:} \makebox[2cm][l]{\texttt{str}} Ex: "words", "example words", "I miss Vine"}
-\item{\makebox[2cm][l]{Boolean:} \makebox[2cm][l]{\texttt{bool}} Ex: True, False (Capitalization is \textit{required}!)}
+\item{\makebox[2cm][l]{Integer:} \makebox[2cm][l]{\texttt{int}} Ex: 1, 10, 121321, -982}\index{type!integer}
+\item{\makebox[2cm][l]{Float:} \makebox[2cm][l]{\texttt{float}} Ex: 1.0, 10000.03, 12.687, -1.982}\index{type!float}
+\item{\makebox[2cm][l]{Complex:} \makebox[2cm][l]{\texttt{complex}} Ex: 1 + 10j, 10.0 - 0.2j, 0.004j, -982 + 1.923j}\index{type!complex}
+\item{\makebox[2cm][l]{String:} \makebox[2cm][l]{\texttt{str}} Ex: "words", "example words", "I miss Vine"}\index{type!string}
+\item{\makebox[2cm][l]{Boolean:} \makebox[2cm][l]{\texttt{bool}} Ex: True, False (Capitalization is \textit{required}!)}\index{type!bool}
 \end{itemize}
 
-Note that for complex numbers only \texttt{j} will work and not \texttt{i}. Examples demonstrating how to work with complex numbers properly in Python will follow. Type conversions can be achieved when needed by placing the variable within parentheses after the desired type. For example if a string contains only an integer, it can be converted to an integer type before performing a mathematical operation. Example shown in Listing \ref{code:typeCast}.
+Note that for complex numbers only \texttt{j} will work and not \texttt{i}. Examples demonstrating how to work with complex numbers properly in Python will follow in later chapters. Type conversions can be achieved when needed by placing the variable within parentheses after the desired type. For example if a string contains only an integer, it can be converted to an integer type before performing a mathematical operation. An example shown in Listing \ref{code:typeCast}.\index{type!type cast}
 
 \usemintedstyle{autumn}
 \begin{listing}[htb]
@@ -399,119 +167,73 @@ print(result)
 \label{code:typeCast}
 \end{listing}
 
+\FloatBarrier
 
 \section{Printing Basics}\label{sec:printBasics}
 
-In most cases in which you're running your program there will be some result that you'll be wanting to display. There are many forms to do so such as printing, plotting, output to a file, etc. We will start with the simplest - printing. We've already printed the classic greeting using \index{print}\texttt{print}, but there are a few more features beyond the single message available. The following breaks down the example file \texttt{printIntro.py} to exhibit these features. This is a good start, and our terminal output will be further extended in a later section about formatting.
+In most cases in which you're running your program there will be some result that you'll be wanting to display. There are many forms to do so such as printing, plotting, output to a file, etc. We will start with the simplest - printing. We've already printed the classic greeting using \index{print}\texttt{print}, but there are a few more features beyond that single message available. The following breaks down the example file \texttt{printIntro.py} to exhibit these features. This is a good start, and our terminal output will be further extended in a later section about formatting.
+
+\FloatBarrier
 
 \subsection{First Features of \texttt{print} and Strings}\label{sec:printFeatures}
 
-As we saw in Listing \ref{code:helloWorldMain}, every individual \texttt{print} statement is on its own line in the output. Do also consider that terminals don't always word-wrap, and that even if they do it often gets difficult to read. Keeping statements that fit within a standard sized terminal (usually anywhere from 80-120 characters) is good practice for usability, and multiple print statements is one way to achieve this, seen in the short demo of Listings \ref{code:printIntro-multi} and \ref{shell:printIntro-multi}
-
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntro.py}
-%{1}{4}
-%{Intro printing - multiple statements for multiple lines. This is the first few lines of \texttt{printIntro.py}}
-%{code:printIntro-multi}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntro.txt}
-%{1}{3}
-%{Entering the command to run \texttt{printIntro.py} and its first two lines of output.}
-%{shell:printIntro-multi}
+As we have seen in examples using \texttt{print}, every individual \texttt{print} statement is on its own line in the output. Do also consider that terminals don't always word-wrap, and that even if they do it often gets difficult to read. Keeping statements that fit within a standard sized terminal (usually about 80 characters) is good practice for usability, and multiple print statements is one way to achieve this, seen in the short demo of Listing \ref{pyshell:printIntro-multi}.
 
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
-{1}{4}
+{1}{3}
 {../../../docCode/chapter2/section2/printIntro.txt}
 {1}{3}
-{}
+{Lines 1-3 of \texttt{printIntro.py}. The call to run the script and the output of this section are shown in the second frame. Each print statement gets printed on its own line in the output.}
 {pyshell:printIntro-multi}
 
 \subsubsection{The \texttt{end} parameter}\label{sec:printEnd}
 
-The first useful feature is the ability to set the ending for a print statement using a function \emph{parameter} (sometimes also called an \emph{argument}). This is done within the call to \texttt{print} (i.e. within its parentheses) by setting the \index{print!end}\texttt{end} parameter. This parameter is by default a special character that tells the terminal to move to the next line (like hitting the "enter" key in a text editor). Setting it manually by using \mintinline{python}|end="..."| within \texttt{print} overrides this newline default, allowing for customization of output. This special newline character is discussed within this chapter in Section \ref{sec:escapeChars}. It is worth noting that this is an \emph{optional parameter}, as its default is always a new line if \texttt{end} is not specified. Looking at Listings \ref{code:printIntro-end0} and \ref{shell:printIntro-end0}, it is shown that setting the \texttt{end} parameter to \texttt{""} leaves nothing as the ending, so the cursor that Python is using to output to the terminal stays where it is until the next print statement. Note that it is required to put the empty quotations \texttt{end=""} and doing something like \texttt{end=} will not work as the \texttt{=} operator will always operate on the next character - resulting in an error.
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntro.py}
-%{4}{18}
-%{Using the \texttt{end} parameter in \texttt{print} to customize output endings. \\Lines 4-18 of \texttt{printIntro.py}}
-%{code:printIntro-end0}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntro.txt}
-%{3}{10}
-%{The output of the lines shown in Listing \ref{code:printIntro-end0} from \texttt{printIntro.py}}
-%{shell:printIntro-end0}
+The first useful feature is the ability to set the ending for a print statement using a function \index{parameter!optional}\emph{parameter} (sometimes also called an \emph{argument}). This is done within the call to \texttt{print} (i.e. within its parentheses) by setting the \index{print!end}\texttt{end} parameter. This parameter is by default a special character that tells the terminal to move to the next line (like hitting the "enter" key in a text editor). Function parameters that have default values that can be manually changed are called \textit{optional parameters}. Setting the \texttt{end} parameter manually by using \mintinline{python}|end="..."| within \texttt{print} overrides this newline default, allowing for customization of output. This special newline\index{escape characters!newline $\backslash$n} character is discussed within this chapter in Section \ref{sec:escapeChars}. Looking at Listing \ref{pyshell:printIntro-end0}, it is shown that setting the \texttt{end} parameter to \texttt{""} leaves nothing as the ending, so the cursor that Python is using to output to the terminal stays where it is until the next print statement. Note that it is required to put the empty quotations \texttt{end=""} and doing something like \texttt{end=} will not work as the \texttt{=} operator will always operate on the next character - resulting in an error.
 
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
 {2}{18}
 {../../../docCode/chapter2/section2/printIntro.txt}
 {3}{10}
-{}
+{Lines 2-18 of \texttt{printIntro.py} and its output. Here the effects of changing the \texttt{end} optional argument are shown. Note that empty \texttt{print} statements here print a blank line in the output.}
 {pyshell:printIntro-end0}
 
-In some cases you may want to set the ending to something more interesting than nothing. This can be done by putting anything you'd like \textit{within} the quotes on the \texttt{end} parameter, as shown in Listings \ref{code:printIntro-end0} and \ref{shell:printIntro-end0}. You might ask why one would put these characters in the end parameter rather than just the quotes of the string to be printed - this is a good question and it will become clear when we introduce variables in Section \ref{sec:vars-types-ops}. For now keep this feature in mind, and notice the inconvenient use of two empty \texttt{print} statements on lines \texttt{16} and \texttt{17} of Listing \ref{code:printIntro-end0}. A good rule of thumb is if portions of code feel repetitive to write: there is likely a better way to write it. We'll see a better solution than these two empty \texttt{print}s shortly in Section \ref{sec:escapeChars}.
+In some cases you may want to set the ending to something more interesting than nothing. This can be done by putting anything you'd like \textit{within} the quotes on the \texttt{end} parameter, as shown in Listing \ref{pyshell:printIntro-end0}. As you read through the example code, notice the inconvenient use of two empty \texttt{print} statements on lines 15 and 16 of Listing \ref{pyshell:printIntro-end0}. A good rule of thumb is if portions of code feel repetitive to write: there is likely a better way to write it. We'll see a better solution than these two empty \texttt{print}s shortly in Section \ref{sec:escapeChars}.
 
 \subsubsection{Multiple Strings in \texttt{print}}\label{sec:printMulti}
 
-Multiple strings (or variables) can be used in a \texttt{print} by separating them by a comma, allowing for a theoretically infinite number of statements input into one \texttt{print} - though more than a few becomes impractical. When using \texttt{string}s as we are, you can also do what's called \index{concatenation}\emph{concatenation} - or combining two strings into one longer string. This can be done either with a juxtaposition of the two strings in quotes, or by using the \texttt{+} operator between them. Using \texttt{+} is usually easier to spot and read on the development side, so that method is recommended. All of this is shown in Listings \ref{code:printIntro-concat} and \ref{shell:printIntro-concat}
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntro.py}
-%{18}{24}
-%{Printing multiple strings in one \texttt{print}, using commas as well as the \texttt{+} operator. \\Lines 18-23 of \texttt{printIntro.py}}
-%{code:printIntro-concat}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntro.txt}
-%{10}{15}
-%{Output of the section of code from \texttt{printIntro.py} shown in Listing \ref{code:printIntro-concat}.}
-%{shell:printIntro-concat}
+Multiple strings (or variables) can be used in a \texttt{print} by separating them by a comma, allowing for a theoretically infinite number of statements input into one \texttt{print} - though more than a few becomes impractical. When using \index{type!string}\texttt{string}s as we are, you can also do what's called \index{concatenation}\emph{concatenation} - or combining two strings into one longer string. This can be done either with a juxtaposition of the two strings in quotes, or by using the \texttt{+} operator between them. Using \texttt{+} is usually easier to spot and read on the development side, so that method is recommended. All of this is shown in Listing \ref{pyshell:printIntro-concat}.
 
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
 {18}{24}
 {../../../docCode/chapter2/section2/printIntro.txt}
 {10}{15}
-{}
+{Lines 18-24 of \texttt{printIntro.py} and its output. This shows various methods of \textit{concatenation} with strings. Note that with variables of other types we can only use the comma separator - \texttt{print} then handles the conversion to the \texttt{string} type.}
 {pyshell:printIntro-concat}
 
 \subsubsection{The \texttt{sep} parameter}\label{sec:printSep}
 
-The other major feature for \texttt{print} customization is the \index{print!sep}\texttt{sep} parameter. Setting this parameter will change what is automatically printed between comma separated values, which is by default a space: \texttt{sep=" "}. This can be adjusted to anything including empty quotes \texttt{sep=""} or a variable which we will see in Section \ref{sec:vars-types-ops}. A short example is shown in Listings \ref{code:printIntro-sep} and \ref{shell:printIntro-sep}
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntro.py}
-%{24}{28}
-%{Setting the \texttt{sep} parameter in \texttt{print}. Note that this parameter is only printed between comma separated values and not between concatenated strings.\\Lines 24-28 of \texttt{printIntro.py}}
-%{code:printIntro-sep}
-%
-%\shellSubH{../../../docCode/chapter2/section2/printIntro.txt}
-%{14}{18}
-%{Output of the section of code from \texttt{printIntro.py} shown in Listing \ref{code:printIntro-sep}.}
-%{shell:printIntro-sep}
+The other major feature for \texttt{print} customization is the \index{print!sep}\texttt{sep} parameter. Setting this parameter will change what is automatically printed between comma separated values, which is by default a space: \texttt{sep=" "}. This can be adjusted to anything including empty quotes \texttt{sep=""} or a variable which we saw in Section \ref{sec:vars-types-ops}. A short example is shown in Listing \ref{pyshell:printIntro-sep}.
 
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
 {24}{28}
 {../../../docCode/chapter2/section2/printIntro.txt}
-{14}{18}
-{}
+{15}{18}
+{Lines 18-24 of \texttt{printIntro.py} and its output. This section demonstrates changing the \texttt{sep} optional argument. Note that this parameter only changes output between comma separated values in \texttt{print}.}
 {pyshell:printIntro-sep}
 
-Lastly for the \texttt{printIntro.py} example, we address an issue regarding quotes. Strings can be defined either with single quotes: \mintinline{python}{'this is a string'} or double quotes \mintinline{python}{"this is also a string"}. Which one to use is a matter of preference, but it is important to note that if you're using one then you can only use the other within the string. An example of this is shown in Listings \ref{code:printIntro-quotes} and \ref{shell:printIntro-quotes}, but a workaround is addressed in the following Section.
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntro.py}
-%       {28}{35}
-%       {Example of restrictions on single and double quotes in strings. A method of getting around this issue is shown in the following Section.\\Lines 28-35 of \texttt{printIntro.py}}
-%       {code:printIntro-quotes}
-%
-%\shellSubH{../../../docCode/chapter2/section2/printIntro.txt}
-%        {18}{21}
-%        {Output of the section of code from \texttt{printIntro.py} shown in Listing \ref{code:printIntro-quotes}.}
-%        {shell:printIntro-quotes}
+Lastly for the \texttt{printIntro.py} example, we address an issue regarding quotes. Strings can be defined either with single quotes: \mintinline{python}{'this is a string'} or double quotes \mintinline{python}{"this is also a string"}. Which one to use is a matter of preference, but it is important to note that if you're using one then you can only use the other within the string. An example of this is shown in Listing \ref{pyshell:printIntro-quotes}, but a workaround is addressed in the following Section.
         
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
 {28}{35}
 {../../../docCode/chapter2/section2/printIntro.txt}
 {18}{21}
-{}
+{Lines 28-30 of \texttt{printIntro.py} and its output. This section demonstrates that \texttt{string}s can be defined with either double or single quotes, and that determines which can be used within the string. A solution to this issue follows in the next subsection.}
 {pyshell:printIntro-quotes}
 
+\FloatBarrier
+
 \subsubsection*{Key Points - Printing Basics}
-\begin{itemize}
+\begin{itemize}\index{print}
     \item Each default call to \texttt{print} will print the input on one line
     \item \texttt{print} has a few optional parameters: 
     \begin{itemize}
@@ -523,81 +245,43 @@ Lastly for the \texttt{printIntro.py} example, we address an issue regarding quo
 
 \section{Escape Characters}\label{sec:escapeChars}
 
-As you may have noticed in portions of \ref{sec:printBasics}, some code was repetitive. Using \texttt{sep} and \texttt{end} add helpful features but still leave \texttt{print} feeling a little stiff in its usage. This is where \index{escape characters}escape characters come in. These are special characters that you may know as "invisible characters" in a word processor, as well as a way to "escape" out of the function that some characters normally have in the Python language. Look at how we can make use of quotes within a string defined by quotes in Listings \ref{code:escapeChars-intro} and \ref{shell:escapeChars-intro}; this is a solution to the problem we saw in Listing \ref{code:printIntro-quotes}.
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
-%    {1}{4}
-%    {Intro to \emph{escape characters}. The use of a backslash $\backslash$ allows for use of special system characters as well as characters that typically define special behavior. In this case, it allows the use of quotes within a string defined by quotes\\Lines 1-4 of \texttt{printIntroEscapes.py}}
-%    {code:escapeChars-intro}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntroEscapes.txt}
-%    {1}{4}
-%    {Output of the section of code from \texttt{printIntroEscapes.py} shown in Listing \ref{code:escapeChars-intro}}
-%    {shell:escapeChars-intro}
-%    
+As you may have noticed in portions of \ref{sec:printBasics}, some code was repetitive. Using \texttt{sep} and \texttt{end} add helpful features but still leave \texttt{print} feeling a little stiff in its usage. This is where \index{escape characters}escape characters come in. These are special characters that you may know as "invisible characters" in a word processor, as well as a way to "escape" out of the function that some characters normally have in the Python language. Look at how we can make use of quotes within a string defined by quotes in Listing \ref{pyshell:escapeChars-intro}; this is a solution to the problem we saw in Listing \ref{pyshell:printIntro-quotes}.
+ 
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
 {1}{4}
 {../../../docCode/chapter2/section2/printIntroEscapes.txt}
 {1}{4}
-{}
-{pyshell:escapeChars-intro}
+{Lines 1-4 of \texttt{printIntroEscapes.py} and its output. In this section, the backslash is used to "escape" the usage of quotes. This allows them to be printed without breaking the quotes used to define the \texttt{string}.}
+{pyshell:escapeChars-intro}\index{escape characters!quotes $\backslash$""" $\backslash$'}
 
-Escape characters can be used in any string, even those that you are not using immediately in a \texttt{print}. When they are in a \texttt{print} though, a new line escape \texttt{$\backslash$n} can be used - saving you from writing an empty print statement to write blank lines. The use of this new line special character is shown in Listings \ref{code:escapeChars-newline} and \ref{shell:escapeChars-newline}.
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
-%    {4}{11}
-%    {Shows the use of the new line escape character to print the equivalent of pressing "Enter" to the terminal. This additional flexibility prevents needing empty print statements. Note that spaces aren't typed after uses of \texttt{$\backslash$n} as this would result in a newline AND a space. Escaping a character (using \texttt{$\backslash$}) only affects the next character in the code.\\Lines 4-11 of \texttt{printIntroEscapes.py}} 
-%    {code:escapeChars-newline}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntroEscapes.txt}
-%    {4}{12}
-%    {Output of the section of code from \texttt{printIntroEscapes.py} shown in Listing \ref{code:escapeChars-newline}}
-%    {shell:escapeChars-newline}
+Escape characters can be used in any string, even those that you are not using immediately in a \texttt{print}. When they are in a \texttt{print} though, a new line escape \texttt{$\backslash$n} can be used - saving you from writing an empty print statement to write blank lines. The use of this new line special character is shown in Listing \ref{pyshell:escapeChars-newline}. One thing to be careful of here is typing in an extra space. If you were to type \mintinline{python}|end="\n "|,\index{print!end} then at the beginning of your new line, there would be a space as well.
     
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
 {4}{11}
 {../../../docCode/chapter2/section2/printIntroEscapes.txt}
 {4}{12}
-{}
-{pyshell:escapeChars-newline}
+{Lines 4-11 of \texttt{printIntroEscapes.py} and its output. This section demonstrates the usage of the newline character \texttt{$\backslash$n}, and that the backslash only applies to the adjacent character.}
+{pyshell:escapeChars-newline}\index{escape characters!newline $\backslash$n}
 
-As just mentioned, escape characters can be in \emph{any} string, this includes the strings put into the \texttt{end} and \texttt{sep} parameters. This adds another degree of customization and flexibility. Basic examples are in Listings \ref{code:escapeChars-printPars} and \ref{shell:escapeChars-printPars}
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
-%    {11}{17}
-%    {Intro to \emph{escape characters}. The use of a backslash $\backslash$ allows for use of special system characters as well as characters that typically define special behavior. In this case, it allows the use of quotes within a string defined by quotes\\Lines 11-17 of \texttt{printIntroEscapes.py}}
-%    {code:escapeChars-printPars}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntroEscapes.txt}
-%    {13}{18}
-%    {Output of the section of code from \texttt{printIntroEscapes.py} shown in Listing \ref{code:escapeChars-printPars}}
-%    {shell:escapeChars-printPars}
+As just mentioned, escape characters can be in \emph{any} string, this includes the strings put into the \texttt{end} and \texttt{sep} parameters. This adds another degree of customization and flexibility. Basic examples are in Listings \ref{pyshell:escapeChars-printPars}.
     
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
 {11}{17}
 {../../../docCode/chapter2/section2/printIntroEscapes.txt}
 {13}{18}
-{}
-{pyshell:escapeChars-printPars}
+{Lines 11-17 of \texttt{printIntroEscapes.py} and its output. The adjustment of optional parameters \texttt{end} and \texttt{sep} with escape characters is demonstrated here.}
+{pyshell:escapeChars-printPars}\index{print!end}\index{print!sep}\index{escape characters!tab $\backslash$t}
 
-To summarize escape characters, the most commonly used ones are new line, tab, backslash, single quote, and double quote. These are mentioned in \texttt{print}s in Listings \ref{code:escapeChars-common} and \ref{shell:escapeChars-common}. This example does not encompass all escape characters - further ones are typically in more advanced applications but a curious beginner can find many examples in a web search.
-
-%\pythonSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
-%    {17}{23}
-%    {A summary of the common \emph{escape characters}. They are listed in order: new line, tab, backslash, single quote, double quote. Note that in the \texttt{print} on line 19 that each backslash is escaped so the representation of the escape characters is printed shown in \ref{shell:escapeChars-common}\\Lines 17-23 of \texttt{printIntroEscapes.py}}
-%    {code:escapeChars-common}
-%
-%\shellSub{../../../docCode/chapter2/section2/printIntroEscapes.txt}
-%    {18}{22}
-%    {Output of the section of code from \texttt{printIntroEscapes.py} shown in Listing \ref{code:escapeChars-common}}
-%    {shell:escapeChars-common}
+To summarize escape characters, the most commonly used ones are new line, tab, backslash, single quote, and double quote. These are mentioned in \texttt{print}s in Listing \ref{pyshell:escapeChars-common}. This example does not encompass all escape characters - further ones are typically in more advanced applications but a curious beginner can find many examples in a web search.
     
 \pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
 {17}{23}
 {../../../docCode/chapter2/section2/printIntroEscapes.txt}
 {18}{22}
-{}
-{pyshell:escapeChars-common}
+{The final lines of \texttt{printIntroEscapes.py} and its output, summarizing the most often used escape characters. Note that to print a backslash, it needs to be escaped: $\backslash\backslash$.}
+{pyshell:escapeChars-common}\index{escape characters!backslash $\backslash${$\backslash$}}
+
+\FloatBarrier
 
 \subsubsection*{Key Points - Escape Characters}
 \begin{itemize}
@@ -611,16 +295,30 @@ To summarize escape characters, the most commonly used ones are new line, tab, b
         \item Single quote: \texttt{$\backslash$'}
         \item Double quote: \texttt{$\backslash$"}
     \end{itemize}
-\end{itemize}
+\end{itemize}\index{escape characters}
 
-
-%
-
-% \ref{code:label1}
-% \ref{shell:label1}
-% \ref{code:label2}
 
 \section{Full Code Listings}
+
+\subsection*{Chapter 1}
+\pythonH{../../../docCode/chapter1/helloWorld.py}{The full content of \texttt{helloWorld.py} used in Section \ref{sec:helloWorld}}{fullpy:helloWorld}
+
+\shellH{../../../docCode/chapter1/helloWorld.txt}{The full output of \texttt{helloWorld.py}}{fullshell:helloWorld}
+
+\FloatBarrier
+
+\subsection*{Chapter 2}
+\pythonH{../../../docCode/chapter2/section1/opsIntro.py}{The full content of \texttt{opsIntro.py} used in Section \ref{sec:ops}}{fullpy:opsIntro}
+
+\shellH{../../../docCode/chapter2/section1/opsIntro.txt}{The full output of \texttt{opsIntro.py}}{fullshell:opsIntro}
+
+\pythonH{../../../docCode/chapter2/section2/printIntro.py}{The full content of \texttt{printIntro.py} used in Section \ref{sec:printBasics}}{fullpy:printIntro}
+
+\shellH{../../../docCode/chapter2/section2/printIntro.txt}{The full output of \texttt{printIntro.py}}{fullshell:printIntro}
+
+\pythonH{../../../docCode/chapter2/section2/printIntroEscapes.py}{The full content of \texttt{printIntroEscapes.py} used in Section \ref{sec:escapeChars}}{fullpy:printIntroEscapes}
+
+\shellH{../../../docCode/chapter2/section2/printIntroEscapes.txt}{The full output of \texttt{printIntroEscapes.py}}{fullshell:printIntroEscapes}
 
 \printindex
 

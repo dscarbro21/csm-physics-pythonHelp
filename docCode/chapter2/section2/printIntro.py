@@ -18,7 +18,7 @@ print()
 print("I can print two things", "together with a comma")
 print("- and if they are strings I can " "omit the comma")
 print("- or I can use " + "the + operator")
-print("-- but not with variables! we'll see that later")
+print("-- but not with variables! we saw that in the variables section.")
 print()
 
 print("If I want something specific between inputs, I can do that:")

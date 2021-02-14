@@ -1,0 +1,219 @@
+\ProvidesPackage{pyhelp}
+
+\usepackage{listings}
+\usepackage[cache=false]{minted}
+\usepackage{graphicx}
+\usepackage[parfill]{parskip} %new paragraph without an indent
+\usepackage{amsmath} %needed for eqref
+\usepackage[margin =1.in]{geometry} %changes margins
+\usepackage[utf8]{inputenc}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage[loose,nice]{units}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[mathscr]{euscript}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mdframed}
+\usepackage{imakeidx}
+\usepackage{caption}
+\usepackage{placeins}
+
+\usepackage{varwidth}
+\DeclareCaptionFormat{capFormat}{%
+  % #1: label (e.g. "Table 1")
+  % #2: separator (e.g. ": ")
+  % #3: caption text
+  \begin{varwidth}{0.9\linewidth}%
+    \centering
+    #1#2#3%
+  \end{varwidth}%
+}
+% \captionsetup{justification=centering}
+\captionsetup{format=capFormat}
+% \captionsetup{labelsep=newline}
+% \usemintedstyle{rainbow_dash}
+
+% \setcounter{secnumdepth}{3}
+
+\definecolor{codebg}{rgb}{0.85,0.85,0.85}
+
+\makeatletter
+\lst@Key{matchrangestart}{f}{\lstKV@SetIf{#1}\lst@ifmatchrangestart}
+\def\lst@SkipToFirst{%
+    \lst@ifmatchrangestart\c@lstnumber=\numexpr-1+\lst@firstline\fi
+    \ifnum \lst@lineno<\lst@firstline
+        \def\lst@next{\lst@BeginDropInput\lst@Pmode
+        \lst@Let{13}\lst@MSkipToFirst
+        \lst@Let{10}\lst@MSkipToFirst}%
+        \expandafter\lst@next
+    \else
+        \expandafter\lst@BOLGobble
+    \fi}
+\makeatother
+
+\newcommand{\captab}{\-\hspace{4em}}
+
+\newcommand{\python}[3]{
+    \usemintedstyle{autumn}
+    \begin{listing}[htb]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \inputminted[linenos]{python}{#1}
+        \end{mdframed}
+        \caption{#2}
+        \label{#3}
+    \end{listing}
+}
+
+\newcommand{\pythonH}[3]{
+    \usemintedstyle{autumn}
+    \begin{listing}[H]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \inputminted[linenos]{python}{#1}
+        \end{mdframed}
+        \caption{#2}
+        \label{#3}
+    \end{listing}
+}
+
+\newcommand{\pythonNLN}[3]{
+    \usemintedstyle{autumn}
+    % \usemintedstyle{rainbow_dash}
+    % \usemintedstyle{manni}
+    \begin{listing}[htb]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \inputminted{python}{#1}
+        \end{mdframed}
+        \caption{#2}
+        \label{#3}
+    \end{listing}
+}
+
+\newcommand{\pythonSub}[5]{
+    \usemintedstyle{autumn}
+    % \usemintedstyle{rainbow_dash}
+    % \usemintedstyle{manni}
+    \begin{listing}[htb]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \inputminted[firstline=#2, lastline=#3, linenos]{python}{#1}
+        \end{mdframed}
+        \caption{#4}
+        \label{#5}
+    \end{listing}
+}
+
+\definecolor{powerBlue}{RGB}{0,30,227}
+\definecolor{terminalGreen}{RGB}{17,120,17}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\newcommand{\terminalType}{\renewcommand{\ttdefault}{cmss}\color{powerBlue}\bf\slshape}
+\newcommand{\terminalInput}{\color{terminalGreen}}
+\lstdefinelanguage{exampleTerminal}{
+    % morecomment=[il]{>>},
+    % morecomment=[s]{>>}{<<}
+}
+\lstset{
+    language={exampleTerminal},
+    % captionpos=b,
+    extendedchars=true,
+    % tabsize=4
+    basicstyle=\ttfamily,
+    moredelim=[il][\terminalType]{>>},
+    moredelim=[is][\terminalType]{<>}{<>},
+    moredelim=[l][\terminalInput]{\$>},
+    columns=fixed,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=12pt,
+    matchrangestart=t,
+    showlines=true,
+    % keepspaces=true,
+    % commentstyle=\color{powerBlue}\slshape,
+    % keywordstyle=\bffamily,
+}
+\newcommand{\shell}[3]{
+    \begin{listing}[htb]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \lstinputlisting{#1}  
+        \end{mdframed}
+        \caption{#2}
+        \label{#3}
+    \end{listing}
+}
+
+\newcommand{\shellH}[3]{
+    \begin{listing}[H]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \lstinputlisting{#1}  
+        \end{mdframed}
+        \caption{#2}
+        \label{#3}
+    \end{listing}
+}
+
+\newcommand{\shellSub}[5]{
+    \begin{listing}[htb]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \lstinputlisting[firstline=#2, lastline=#3]{#1}  
+        \end{mdframed}
+        \caption{#4}
+        \label{#5}
+    \end{listing}
+}
+ 
+\newcommand{\shellSubH}[5]{
+    \begin{listing}[H]
+        \begin{mdframed}[backgroundcolor=codebg]
+            \lstinputlisting[firstline=#2, lastline=#3]{#1}  
+        \end{mdframed}
+        \caption{#4}
+        \label{#5}
+    \end{listing}
+}
+
+\newcommand{\pythonAndShellSub}[8]{
+\usemintedstyle{autumn}
+    \begin{listing}[htb]
+ 	   \begin{mdframed}[backgroundcolor=codebg]
+            \inputminted[firstline=#2, lastline=#3, linenos]{python}{#1}
+        \end{mdframed}
+        \hspace{5em}$\Downarrow$\hfill$\Downarrow$\hspace{5em}
+        \begin{mdframed}[backgroundcolor=codebg]
+            \lstinputlisting[firstline=#5, lastline=#6]{#4}  
+        \end{mdframed}
+        \caption{#7}
+        \label{#8}
+    \end{listing}
+}
+
+\newcommand{\pythonAndShellSubH}[8]{
+\usemintedstyle{autumn}
+    \begin{listing}[H]
+ 	   \begin{mdframed}[backgroundcolor=codebg]
+            \inputminted[firstline=#2, lastline=#3, linenos]{python}{#1}
+        \end{mdframed}
+        \hspace{5em}$\Downarrow$\hfill$\Downarrow$\hspace{5em}
+        \begin{mdframed}[backgroundcolor=codebg]
+            \lstinputlisting[firstline=#5, lastline=#6]{#4}  
+        \end{mdframed}
+        \caption{#7}
+        \label{#8}
+    \end{listing}
+}
+
+% This doesn't seem to work.
+\newcommand{\scratchPython}[3]{
+\usemintedstyle{autumn}
+\begin{listing}[htb]
+\begin{mdframed}[backgroundcolor=codebg]
+\begin{minted}[linenos]{python}
+{#1}
+\end{minted}
+\end{mdframed}
+\caption{#2}
+\label{#3}
+\end{listing}
+}
+
+    \newcommand{\uhat}[1]{\expandafter\hat#1}

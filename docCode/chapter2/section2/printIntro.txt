@@ -11,7 +11,7 @@ I can end with spaces   or dashes---or anything I need to!!!!!
 I can print two things together with a comma
 - and if they are strings I can omit the comma
 - or I can use the + operator
--- but not with variables! we'll see that later
+-- but not with variables! we saw that in the variables section.
 
 If I want something specific between inputs, I can do that:
 using the--sep--parameter
