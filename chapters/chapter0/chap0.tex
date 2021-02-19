@@ -34,6 +34,8 @@ First, go to the Python official website at \url{https://www.python.org/download
 \label{fig:pyhomepage}
 \end{figure}
 
+\FloatBarrier
+
 Instead of the shiny big button, scroll down to see the latest releases for each version. In February 2021, the most recent version with support from most major packages is 3.8.7 - as seen in Figure \ref{fig:pyDownloadVersions}. Click the associated download link to continue.
 
 \begin{figure}[H]
@@ -42,6 +44,8 @@ Instead of the shiny big button, scroll down to see the latest releases for each
 \caption{Latest version releases of Python. At this time we are looking for the latest 3.8.x version.}
 \label{fig:pyDownloadVersions}
 \end{figure}
+
+\FloatBarrier
 
 Now that we are looking at the right version, we can go ahead and download the easy-to-use installer. Scroll down and look for the Windows Installers (boxed in Figure \ref{fig:pyInstallSelect}). It is important you choose the right installer for either a 32-bit or 64-bit system. If you are unsure, right-click on your Windows start menu icon and select "System". Under "Device Specifications" and "System Type" you will see either \textbf{64-bit operating system, x64-based processor} or \textbf{32-bit operating system, x86-based processor}. Select the correct installer link and go ahead and run the \texttt{.exe} file, but pause before clicking through the installer!
 
@@ -99,8 +103,8 @@ Now just to get Terminal navigation down if you're not familiar - here are four 
 
 \begin{itemize}
 	\item{\makebox[2cm][l]{\texttt{cd} $<$dir$>$} "Change Directory" - moves the terminal to the location specified by \texttt{dir}.}
-	\item{\makebox[2cm][l]{\texttt{ls}} "List Segment" - Prints all the files and directories visible in the terminal's current location}
-	\item{\makebox[2cm][l]{\texttt{.}} "Current Directory" - the single dot indicates that any file paths start from the directory the terminal is in.}
+	\item{\makebox[2cm][l]{\texttt{ls}} "List Segment" - Show all files and folderss visible in current location}
+	\item{\makebox[2cm][l]{\texttt{.}} "Current Directory" - single dot indicates that file paths start from current location.}
 	\item{\makebox[2cm][l]{\texttt{..}} "Parent Directory" - two dots indicates the directory above the current directory.}
 \end{itemize}
 
@@ -109,7 +113,7 @@ An example of each of these commands is shown in Figure \ref{fig:pytest}. In thi
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{./img/pytest.PNG}
-\caption{Navigating directories in the terminal and running a python script.}
+\caption{Navigating directories in the terminal and running a python script. Take note of the \texttt{..} and \texttt{.} in the file paths. When using a terminal, tab will autocomplete file names which can be very handy!}
 \label{fig:pytest}
 \end{figure}
 

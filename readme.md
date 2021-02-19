@@ -60,6 +60,6 @@ Other planned guides include:
 * *Quick guide to documenting code*
 * *GitHub how-to*
 
-### Further Help
+## Further Help
 * Need help that isn't yet covered here? Feel free to ask questions in the #python-help channel on the Physics Discord.
 * Notice any errors? Have topic suggestions? Email dscarbro@mines.edu or nmaterise@mines.edu
