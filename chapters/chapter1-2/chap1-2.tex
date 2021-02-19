@@ -1,6 +1,6 @@
 \documentclass[oneside]{book}
 
-\usepackage{../../pyhelp} 
+\usepackage{../pyhelp} 
  
  
     
@@ -28,13 +28,13 @@ If you are familiar with some other languages, you may notice that Python is not
 \label{sec:helloWorld}
 As it is the unwritten law that all programming instruction begin with "Hello World!", we will implement it in Python to get started. This does have utility in demonstrating the simplicity of Python and the nature of it being a parsed language. Create a file named \texttt{helloWorld.py}, and all that we have to do is tell Python to print our greeting to the world with the one-liner in Listing \ref{code:helloWorld}.
 
-\python{../../../docCode/chapter1/helloWorld.py}
+\python{./code/chapter1/helloWorld.py}
        {Classic "Hello World!" code}
        {code:helloWorld}
 
 Running the \texttt{helloWorld.py} program from a terminal will ask the Python parser to look at this file, and process the commands as they are read. Anything that is \textit{top level}, meaning anything not contained in a function, class, etc. will be executed as it is read and translated. This will yield the output in the terminal as we see in Listing \ref{shell:helloWorld}.
 
-\shell{../../../docCode/chapter1/helloWorld.txt}
+\shell{./code/chapter1/helloWorld.txt}
       {Running helloWorld.py from a shell}
       {shell:helloWorld}
 
@@ -97,29 +97,29 @@ Now that you are familiar with the basis of starting a Python script and display
 
 Example usage of these operators is shown in Listings \ref{pyshell:opsIntroAddSub}-\ref{pyshell:opsIntroOther}. Everything is straightforward in these examples, but it is important to take note of when assignment (saving the result of an operation) occurs. When performing operations with variables, no changes to any variables occurs \textit{unless} a variable is explicitly changed with the \textit{assignment} operator \texttt{=}. This is seen in these example listings when assigning the results to \texttt{z}.
 
-\pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
+\pythonAndShellSub{./code/chapter2/section1/opsIntro.py}
 {1}{11}
-{../../../docCode/chapter2/section1/opsIntro.txt}
+{./code/chapter2/section1/opsIntro.txt}
 {1}{6}
 {Lines 1-5 of \texttt{opsIntro.py} demonstrating variable assignment and using the \texttt{+} and \texttt{-} operators. It is important to note that the result of \texttt{x + y} within \texttt{print} is not stored. The result is printed and is not saved afterwards. \texttt{x} and \texttt{y} will still be \texttt{6} and \texttt{4} respectively. The output of this section is shown in the second frame.}{pyshell:opsIntroAddSub}\index{operator!addition +}\index{operator!subtraction -}
 
-\pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
+\pythonAndShellSub{./code/chapter2/section1/opsIntro.py}
 {12}{19}
-{../../../docCode/chapter2/section1/opsIntro.txt}
+{./code/chapter2/section1/opsIntro.txt}
 {7}{10}
 {Lines 12-19 of \texttt{opsIntro.py} demonstrating use of the \texttt{*} and \texttt{/} operators. Note that in the output in the second frame, that after division the result is displayed with a decimal point. Since division may not always yield a whole integer, the \textit{type} is changed to \textit{float}. Types are discussed further in Section \ref{sec:dataTypes}.}
 {pyshell:opsIntroMultDiv}\index{operator!multiplication *}\index{operator!division /}\index{type!float}
 
-\pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
+\pythonAndShellSub{./code/chapter2/section1/opsIntro.py}
 {20}{25}
-{../../../docCode/chapter2/section1/opsIntro.txt}
+{./code/chapter2/section1/opsIntro.txt}
 {11}{15}
 {Lines 20-25 of \texttt{opsIntro.py} and its output. This section demonstrates that any further operations on \texttt{z} after division changed its type retains that type, even if the result is an integer.}
 {pyshell:opsIntroRetainFloat}
 
-\pythonAndShellSub{../../../docCode/chapter2/section1/opsIntro.py}
+\pythonAndShellSub{./code/chapter2/section1/opsIntro.py}
 {26}{29}
-{../../../docCode/chapter2/section1/opsIntro.txt}
+{./code/chapter2/section1/opsIntro.txt}
 {16}{19}
 {Lines 26-29 of \texttt{opsIntro.py} and its output. This section provides an example of each of the common operators beyond simple arithmetic. Note that both the \texttt{\%} and \texttt{//} operators yield integer output.}
 {pyshell:opsIntroOther}\index{operator!exponent **}\index{operator!modulus \%}\index{operator!floor division //}\index{operator!parentheses ()}
@@ -179,9 +179,9 @@ In most cases in which you're running your program there will be some result tha
 
 As we have seen in examples using \texttt{print}, every individual \texttt{print} statement is on its own line in the output. Do also consider that terminals don't always word-wrap, and that even if they do it often gets difficult to read. Keeping statements that fit within a standard sized terminal (usually about 80 characters) is good practice for usability, and multiple print statements is one way to achieve this, seen in the short demo of Listing \ref{pyshell:printIntro-multi}.
 
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntro.py}
 {1}{3}
-{../../../docCode/chapter2/section2/printIntro.txt}
+{./code/chapter2/section2/printIntro.txt}
 {1}{3}
 {Lines 1-3 of \texttt{printIntro.py}. The call to run the script and the output of this section are shown in the second frame. Each print statement gets printed on its own line in the output.}
 {pyshell:printIntro-multi}
@@ -190,9 +190,9 @@ As we have seen in examples using \texttt{print}, every individual \texttt{print
 
 The first useful feature is the ability to set the ending for a print statement using a function \index{parameter!optional}\emph{parameter} (sometimes also called an \emph{argument}). This is done within the call to \texttt{print} (i.e. within its parentheses) by setting the \index{print!end}\texttt{end} parameter. This parameter is by default a special character that tells the terminal to move to the next line (like hitting the "enter" key in a text editor). Function parameters that have default values that can be manually changed are called \textit{optional parameters}. Setting the \texttt{end} parameter manually by using \mintinline{python}|end="..."| within \texttt{print} overrides this newline default, allowing for customization of output. This special newline\index{escape characters!newline $\backslash$n} character is discussed within this chapter in Section \ref{sec:escapeChars}. Looking at Listing \ref{pyshell:printIntro-end0}, it is shown that setting the \texttt{end} parameter to \texttt{""} leaves nothing as the ending, so the cursor that Python is using to output to the terminal stays where it is until the next print statement. Note that it is required to put the empty quotations \texttt{end=""} and doing something like \texttt{end=} will not work as the \texttt{=} operator will always operate on the next character - resulting in an error.
 
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntro.py}
 {2}{18}
-{../../../docCode/chapter2/section2/printIntro.txt}
+{./code/chapter2/section2/printIntro.txt}
 {3}{10}
 {Lines 2-18 of \texttt{printIntro.py} and its output. Here the effects of changing the \texttt{end} optional argument are shown. Note that empty \texttt{print} statements here print a blank line in the output.}
 {pyshell:printIntro-end0}
@@ -203,9 +203,9 @@ In some cases you may want to set the ending to something more interesting than 
 
 Multiple strings (or variables) can be used in a \texttt{print} by separating them by a comma, allowing for a theoretically infinite number of statements input into one \texttt{print} - though more than a few becomes impractical. When using \index{type!string}\texttt{string}s as we are, you can also do what's called \index{concatenation}\emph{concatenation} - or combining two strings into one longer string. This can be done either with a juxtaposition of the two strings in quotes, or by using the \texttt{+} operator between them. Using \texttt{+} is usually easier to spot and read on the development side, so that method is recommended. All of this is shown in Listing \ref{pyshell:printIntro-concat}.
 
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntro.py}
 {18}{24}
-{../../../docCode/chapter2/section2/printIntro.txt}
+{./code/chapter2/section2/printIntro.txt}
 {10}{15}
 {Lines 18-24 of \texttt{printIntro.py} and its output. This shows various methods of \textit{concatenation} with strings. Note that with variables of other types we can only use the comma separator - \texttt{print} then handles the conversion to the \texttt{string} type.}
 {pyshell:printIntro-concat}
@@ -214,18 +214,18 @@ Multiple strings (or variables) can be used in a \texttt{print} by separating th
 
 The other major feature for \texttt{print} customization is the \index{print!sep}\texttt{sep} parameter. Setting this parameter will change what is automatically printed between comma separated values, which is by default a space: \texttt{sep=" "}. This can be adjusted to anything including empty quotes \texttt{sep=""} or a variable which we saw in Section \ref{sec:vars-types-ops}. A short example is shown in Listing \ref{pyshell:printIntro-sep}.
 
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntro.py}
 {24}{28}
-{../../../docCode/chapter2/section2/printIntro.txt}
+{./code/chapter2/section2/printIntro.txt}
 {15}{18}
 {Lines 18-24 of \texttt{printIntro.py} and its output. This section demonstrates changing the \texttt{sep} optional argument. Note that this parameter only changes output between comma separated values in \texttt{print}.}
 {pyshell:printIntro-sep}
 
 Lastly for the \texttt{printIntro.py} example, we address an issue regarding quotes. Strings can be defined either with single quotes: \mintinline{python}{'this is a string'} or double quotes \mintinline{python}{"this is also a string"}. Which one to use is a matter of preference, but it is important to note that if you're using one then you can only use the other within the string. An example of this is shown in Listing \ref{pyshell:printIntro-quotes}, but a workaround is addressed in the following Section.
         
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntro.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntro.py}
 {28}{35}
-{../../../docCode/chapter2/section2/printIntro.txt}
+{./code/chapter2/section2/printIntro.txt}
 {18}{21}
 {Lines 28-30 of \texttt{printIntro.py} and its output. This section demonstrates that \texttt{string}s can be defined with either double or single quotes, and that determines which can be used within the string. A solution to this issue follows in the next subsection.}
 {pyshell:printIntro-quotes}
@@ -247,36 +247,36 @@ Lastly for the \texttt{printIntro.py} example, we address an issue regarding quo
 
 As you may have noticed in portions of \ref{sec:printBasics}, some code was repetitive. Using \texttt{sep} and \texttt{end} add helpful features but still leave \texttt{print} feeling a little stiff in its usage. This is where \index{escape characters}escape characters come in. These are special characters that you may know as "invisible characters" in a word processor, as well as a way to "escape" out of the function that some characters normally have in the Python language. Look at how we can make use of quotes within a string defined by quotes in Listing \ref{pyshell:escapeChars-intro}; this is a solution to the problem we saw in Listing \ref{pyshell:printIntro-quotes}.
  
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntroEscapes.py}
 {1}{4}
-{../../../docCode/chapter2/section2/printIntroEscapes.txt}
+{./code/chapter2/section2/printIntroEscapes.txt}
 {1}{4}
 {Lines 1-4 of \texttt{printIntroEscapes.py} and its output. In this section, the backslash is used to "escape" the usage of quotes. This allows them to be printed without breaking the quotes used to define the \texttt{string}.}
 {pyshell:escapeChars-intro}\index{escape characters!quotes $\backslash$""" $\backslash$'}
 
 Escape characters can be used in any string, even those that you are not using immediately in a \texttt{print}. When they are in a \texttt{print} though, a new line escape \texttt{$\backslash$n} can be used - saving you from writing an empty print statement to write blank lines. The use of this new line special character is shown in Listing \ref{pyshell:escapeChars-newline}. One thing to be careful of here is typing in an extra space. If you were to type \mintinline{python}|end="\n "|,\index{print!end} then at the beginning of your new line, there would be a space as well.
     
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntroEscapes.py}
 {4}{11}
-{../../../docCode/chapter2/section2/printIntroEscapes.txt}
+{./code/chapter2/section2/printIntroEscapes.txt}
 {4}{12}
 {Lines 4-11 of \texttt{printIntroEscapes.py} and its output. This section demonstrates the usage of the newline character \texttt{$\backslash$n}, and that the backslash only applies to the adjacent character.}
 {pyshell:escapeChars-newline}\index{escape characters!newline $\backslash$n}
 
 As just mentioned, escape characters can be in \emph{any} string, this includes the strings put into the \texttt{end} and \texttt{sep} parameters. This adds another degree of customization and flexibility. Basic examples are in Listings \ref{pyshell:escapeChars-printPars}.
     
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntroEscapes.py}
 {11}{17}
-{../../../docCode/chapter2/section2/printIntroEscapes.txt}
+{./code/chapter2/section2/printIntroEscapes.txt}
 {13}{18}
 {Lines 11-17 of \texttt{printIntroEscapes.py} and its output. The adjustment of optional parameters \texttt{end} and \texttt{sep} with escape characters is demonstrated here.}
 {pyshell:escapeChars-printPars}\index{print!end}\index{print!sep}\index{escape characters!tab $\backslash$t}
 
 To summarize escape characters, the most commonly used ones are new line, tab, backslash, single quote, and double quote. These are mentioned in \texttt{print}s in Listing \ref{pyshell:escapeChars-common}. This example does not encompass all escape characters - further ones are typically in more advanced applications but a curious beginner can find many examples in a web search.
     
-\pythonAndShellSub{../../../docCode/chapter2/section2/printIntroEscapes.py}
+\pythonAndShellSub{./code/chapter2/section2/printIntroEscapes.py}
 {17}{23}
-{../../../docCode/chapter2/section2/printIntroEscapes.txt}
+{./code/chapter2/section2/printIntroEscapes.txt}
 {18}{22}
 {The final lines of \texttt{printIntroEscapes.py} and its output, summarizing the most often used escape characters. Note that to print a backslash, it needs to be escaped: $\backslash\backslash$.}
 {pyshell:escapeChars-common}\index{escape characters!backslash $\backslash${$\backslash$}}
@@ -301,24 +301,24 @@ To summarize escape characters, the most commonly used ones are new line, tab, b
 \section{Full Code Listings}
 
 \subsection*{Chapter 1}
-\pythonH{../../../docCode/chapter1/helloWorld.py}{The full content of \texttt{helloWorld.py} used in Section \ref{sec:helloWorld}}{fullpy:helloWorld}
+\pythonH{./code/chapter1/helloWorld.py}{The full content of \texttt{helloWorld.py} used in Section \ref{sec:helloWorld}}{fullpy:helloWorld}
 
-\shellH{../../../docCode/chapter1/helloWorld.txt}{The full output of \texttt{helloWorld.py}}{fullshell:helloWorld}
+\shellH{./code/chapter1/helloWorld.txt}{The full output of \texttt{helloWorld.py}}{fullshell:helloWorld}
 
 \FloatBarrier
 
 \subsection*{Chapter 2}
-\pythonH{../../../docCode/chapter2/section1/opsIntro.py}{The full content of \texttt{opsIntro.py} used in Section \ref{sec:ops}}{fullpy:opsIntro}
+\pythonH{./code/chapter2/section1/opsIntro.py}{The full content of \texttt{opsIntro.py} used in Section \ref{sec:ops}}{fullpy:opsIntro}
 
-\shellH{../../../docCode/chapter2/section1/opsIntro.txt}{The full output of \texttt{opsIntro.py}}{fullshell:opsIntro}
+\shellH{./code/chapter2/section1/opsIntro.txt}{The full output of \texttt{opsIntro.py}}{fullshell:opsIntro}
 
-\pythonH{../../../docCode/chapter2/section2/printIntro.py}{The full content of \texttt{printIntro.py} used in Section \ref{sec:printBasics}}{fullpy:printIntro}
+\pythonH{./code/chapter2/section2/printIntro.py}{The full content of \texttt{printIntro.py} used in Section \ref{sec:printBasics}}{fullpy:printIntro}
 
-\shellH{../../../docCode/chapter2/section2/printIntro.txt}{The full output of \texttt{printIntro.py}}{fullshell:printIntro}
+\shellH{./code/chapter2/section2/printIntro.txt}{The full output of \texttt{printIntro.py}}{fullshell:printIntro}
 
-\pythonH{../../../docCode/chapter2/section2/printIntroEscapes.py}{The full content of \texttt{printIntroEscapes.py} used in Section \ref{sec:escapeChars}}{fullpy:printIntroEscapes}
+\pythonH{./code/chapter2/section2/printIntroEscapes.py}{The full content of \texttt{printIntroEscapes.py} used in Section \ref{sec:escapeChars}}{fullpy:printIntroEscapes}
 
-\shellH{../../../docCode/chapter2/section2/printIntroEscapes.txt}{The full output of \texttt{printIntroEscapes.py}}{fullshell:printIntroEscapes}
+\shellH{./code/chapter2/section2/printIntroEscapes.txt}{The full output of \texttt{printIntroEscapes.py}}{fullshell:printIntroEscapes}
 
 \printindex
 
